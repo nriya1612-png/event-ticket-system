@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Event Tickets</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background:#f4f4f4;
+}
+
+.container{
+background:white;
+width:400px;
+margin:auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+.seats{
+display:grid;
+grid-template-columns: repeat(8,40px);
+gap:10px;
+justify-content:center;
+margin-top:20px;
+}
+
+.seat{
+width:40px;
+height:40px;
+border:2px solid green;
+border-radius:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+}
+
+.seat.selected{
+background:orange;
+color:white;
+}
+
+.seat.sold{
+background:lightgray;
+border:none;
+cursor:not-allowed;
+}
+
+.legend{
+margin-top:20px;
+}
+
+.box{
+display:inline-block;
+width:15px;
+height:15px;
+margin-right:5px;
+}
+
+.available{background:white;border:2px solid green;}
+.selectedBox{background:orange;}
+.soldBox{background:lightgray;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎟 Book Event Tickets</h1>
+
+<form>
+
+Name<br>
+<input type="text" required><br><br>
+
+Email<br>
+<input type="email" required><br><br>
+
+Select Event<br>
+<select required>
+  <option value="">-- Choose Event --</option>
+  <option value="music">Music Night</option>
+  <option value="dance">Dance Competition</option>
+  <option value="tech">Tech Fest</option>
+  <option value="makeover">Makeover Magic</option>
+  <option value="mehandi">Mehandi Mania</option>
+  <option value="drama">Mono Acting</option>
+  <option value="rangoli">Rangoli Utsav</option>
+
+</select>
+<br><br>
+
+</form>
+
+<h3>Select Seats</h3>
+
+<div class="seats">
+
+<div class="seat">1</div>
+<div class="seat">2</div>
+<div class="seat">3</div>
+<div class="seat sold">4</div>
+<div class="seat">5</div>
+<div class="seat">6</div>
+<div class="seat">7</div>
+<div class="seat">8</div>
+
+<div class="seat">9</div>
+<div class="seat">10</div>
+<div class="seat">11</div>
+<div class="seat sold">12</div>
+<div class="seat">13</div>
+<div class="seat">14</div>
+<div class="seat">15</div>
+<div class="seat">16</div>
+
+</div>
+
+<br>
+
+<button onclick="generateQR()">Confirm Booking</button>
+
+<h3>Your Ticket QR</h3>
+<div id="qrcode"></div>
+
+<div class="legend">
+<span class="box available"></span> Available
+<span class="box selectedBox"></span> Selected
+<span class="box soldBox"></span> Sold
+</div>
+
+</div>
+
+<script>
+
+let seats=document.querySelectorAll(".seat");
+
+seats.forEach(seat=>{
+seat.addEventListener("click",function(){
+
+if(!seat.classList.contains("sold")){
+seat.classList.toggle("selected");
+}
+
+});
+});
+
+function generateQR(){
+
+document.getElementById("qrcode").innerHTML="";
+
+new QRCode(document.getElementById("qrcode"), {
+text: "College Event Ticket",
+width:150,
+height:150
+});
+
+alert("Booked Successfully!");
+
+}
+
+</script>
+
+</body>
+</html>

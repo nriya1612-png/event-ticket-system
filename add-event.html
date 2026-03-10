@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Event</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#eef;
+}
+
+.box{
+background:white;
+width:400px;
+margin:auto;
+margin-top:100px;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Add Event</h2>
+
+<input type="text" id="eventName" placeholder="Event Name"><br><br>
+<input type="date" id="eventDate"><br><br>
+
+<button onclick="addEvent()">Add Event</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+function addEvent(){
+
+let name=document.getElementById("eventName").value;
+let date=document.getElementById("eventDate").value;
+
+let events=JSON.parse(localStorage.getItem("events")) || [];
+
+events.push({name:name,date:date});
+
+localStorage.setItem("events",JSON.stringify(events));
+
+document.getElementById("msg").innerText="Event Added Successfully";
+
+}
+
+</script>
+
+</body>
+</html>

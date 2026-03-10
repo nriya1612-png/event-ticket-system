@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#eef;
+}
+
+.box{
+background:white;
+padding:30px;
+margin:auto;
+margin-top:100px;
+width:400px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Admin Dashboard</h1>
+
+<p>Only admin can see this page.</p>
+
+<button onclick="location.href='add-event.html'">Add Event</button>
+
+<button onclick="location.href='edit-event.html'">Edit Event</button>
+
+<button onclick="location.href='delete-event.html'">Delete Event</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+<script>
+
+/* Check admin access */
+
+if(localStorage.getItem("admin")!=="true"){
+
+window.location.href="admin-login.html";
+
+}
+
+/* Logout */
+
+function logout(){
+
+localStorage.removeItem("admin");
+
+window.location.href="admin-login.html";
+
+}
+
+</script>
+
+</body>
+</html>

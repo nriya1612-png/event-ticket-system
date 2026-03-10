@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Delete Event</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#eef;
+}
+
+.box{
+background:white;
+width:400px;
+margin:auto;
+margin-top:100px;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Delete Event</h2>
+
+<select id="eventList"></select><br><br>
+
+<button onclick="deleteEvent()">Delete Event</button>
+
+</div>
+
+<script>
+
+let events=JSON.parse(localStorage.getItem("events")) || [];
+
+let list=document.getElementById("eventList");
+
+events.forEach((e,i)=>{
+let option=document.createElement("option");
+option.value=i;
+option.text=e.name+" - "+e.date;
+list.appendChild(option);
+});
+
+function deleteEvent(){
+
+let index=list.value;
+
+events.splice(index,1);
+
+localStorage.setItem("events",JSON.stringify(events));
+
+alert("Event Deleted");
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
